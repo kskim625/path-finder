@@ -17,6 +17,7 @@
 .calendarRow {
   display: flex;
   border: 1px #000 solid;
+  user-select: none;
 }
 
 .calendarContent {
@@ -24,6 +25,7 @@
   height: 45px;
   line-height: 45px;
   text-align: center;
+  cursor: pointer;
 }
 
 .calendarContentToday {

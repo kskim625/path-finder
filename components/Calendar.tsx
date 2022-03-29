@@ -3,7 +3,7 @@ import styles from '../styles/Calendar.module.css';
 
 const Calendar = ({ date }: { date: Date }) => {
   const [thisCalendar, setThisCalendar] = useState<JSX.Element>(<></>);
-  const daysInAWeek: number = 7;
+  const DAYS_IN_A_WEEK: number = 7;
 
   const drawCalendarEl = (calEl: string, j: number) => {
     const today: Date = new Date();
@@ -42,11 +42,11 @@ const Calendar = ({ date }: { date: Date }) => {
   const setCalendarRow = (year: number, month: number, date: number, lastDate: number) => {
     const firstDay: number = new Date(year, month, 1).getDay();
     const thisRow: string[] = date === 1 ? new Array(firstDay).fill('') : [];
-    while (thisRow.length < daysInAWeek && date <= lastDate) {
+    while (thisRow.length < DAYS_IN_A_WEEK && date <= lastDate) {
       thisRow.push(String(date));
       date += 1;
     }
-    while (thisRow.length < daysInAWeek) {
+    while (thisRow.length < DAYS_IN_A_WEEK) {
       thisRow.push('');
     }
     return thisRow;
@@ -58,13 +58,13 @@ const Calendar = ({ date }: { date: Date }) => {
     const firstRow = setCalendarRow(year, month, 1, lastDate);
     calendarRows.push(firstRow);
     let currentDate =
-      daysInAWeek -
+      DAYS_IN_A_WEEK -
       firstRow.filter((str) => {
         return str === '';
       }).length;
     while (currentDate < lastDate) {
       calendarRows.push(setCalendarRow(year, month, currentDate, lastDate));
-      currentDate += daysInAWeek;
+      currentDate += DAYS_IN_A_WEEK;
     }
     return calendarRows;
   };
