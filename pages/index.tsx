@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       <HeadTag />
       <Header />
       <Nav />
-      <Calendar date={today} />
+      <Calendar date={today} holidays={[]} />
       <Footer />
     </div>
   );

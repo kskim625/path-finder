@@ -8,10 +8,9 @@
   margin: 0 auto;
 }
 
-.calendarRow:first-child {
-  margin-top: 15px;
-  background-color: rgb(0, 0, 0, 0.5);
+.calendarRow:nth-child(2) {
   color: #fff;
+  background-color: rgb(240, 58, 23, 0.8);
 }
 
 .calendarRow {
@@ -25,13 +24,51 @@
   height: 45px;
   line-height: 45px;
   text-align: center;
+}
+
+.calendarToday {
+  border-radius: 10px;
+  background-color: rgb(235, 217, 88, 0.8);
+}
+
+.calendarHoliday {
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.calendarContentToday {
+.calendarHoliday:after {
+  content: '';
+  display: flex;
+  position: absolute;
+  transform: translate(250%, -12px);
+  border-radius: 50%;
+  width: 7.5px;
+  height: 7.5px;
+  background-color: rgba(255, 0, 0, 0.8);
+}
+
+.dayType {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.dayTypeToday {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-right: 10px;
   width: 45px;
   height: 45px;
-  line-height: 45px;
-  text-align: center;
   background-color: rgb(235, 217, 88, 0.8);
+}
+
+.dayTypeHoliday {
+  border-radius: 50%;
+  margin: 0 10px;
+  width: 7.5px;
+  height: 7.5px;
+  background-color: rgba(255, 0, 0, 0.8);
 }

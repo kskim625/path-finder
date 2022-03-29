@@ -1,15 +1,57 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Calendar.module.css';
 
-const Calendar = ({ date }: { date: Date }) => {
+interface datetimeType {
+  year: number;
+  month: number;
+  day: number;
+}
+
+interface holidayType {
+  country: { id: string; name: string };
+  date: { datetime: datetimeType; iso: string };
+  description: string;
+  locations: string;
+  name: string;
+  states: string;
+  type: string[];
+}
+
+const CalendarHeader = () => {
+  return (
+    <div className={styles.dayType}>
+      <div className={styles.dayTypeToday}>31</div>
+      {'today'}
+      <div className={styles.dayTypeHoliday}></div>
+      {'holidays'}
+    </div>
+  );
+};
+
+const Calendar = ({ date, holidays }: { date: Date; holidays: holidayType[] | [] }) => {
   const [thisCalendar, setThisCalendar] = useState<JSX.Element>(<></>);
+  const [thisHolidays, setThisHolidays] = useState<holidayType[]>([]);
   const DAYS_IN_A_WEEK: number = 7;
+
+  const decideHoliday = (calEl: string) => {
+    return (
+      thisHolidays.filter((holiday) => {
+        return holiday.date.datetime.day === Number(calEl);
+      }).length > 0
+    );
+  };
 
   const drawCalendarEl = (calEl: string, j: number) => {
     const today: Date = new Date();
     const isToday: boolean = today.getFullYear() === date.getFullYear() && today.getMonth() === date.getMonth() && today.getDate() === Number(calEl);
+    const isHoliday: boolean = decideHoliday(calEl);
+
     return isToday ? (
-      <div className={styles.calendarContentToday} key={`calendarEl-${j}`}>
+      <div className={`${styles.calendarContent} ${styles.calendarToday}`} key={`calendarEl-${j}`}>
+        {calEl}
+      </div>
+    ) : isHoliday ? (
+      <div className={`${styles.calendarContent} ${styles.calendarHoliday}`} key={`calendarEl-${j}`}>
         {calEl}
       </div>
     ) : (
@@ -76,12 +118,21 @@ const Calendar = ({ date }: { date: Date }) => {
   };
 
   useEffect(() => {
-    setCalendar();
+    setThisHolidays(
+      holidays.filter((holiday) => {
+        return holiday.date.datetime.month === date.getMonth() + 1;
+      })
+    );
   }, []);
+
+  useEffect(() => {
+    setCalendar();
+  }, [thisHolidays]);
 
   return (
     <div className={styles.calendarWrapper}>
       {`${date.getFullYear()}년 ${date.getMonth() + 1}월`}
+      <CalendarHeader />
       {thisCalendar}
     </div>
   );
