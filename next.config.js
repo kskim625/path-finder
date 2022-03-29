@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const debug = process.env.NODE_ENV !== 'production';
+const name = 'world-calendar';
 
-module.exports = nextConfig
+module.exports = {
+  assetPrefix: !debug ? `/${name}/` : '',
+};
