@@ -6,4 +6,11 @@
   padding: 1rem 0;
   font-size: 25px;
   font-weight: 600;
+  user-select: none;
+}
+
+.mode {
+  position: absolute;
+  transform: translateX(425%);
+  cursor: pointer;
 }

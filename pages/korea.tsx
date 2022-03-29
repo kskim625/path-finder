@@ -1,22 +1,14 @@
 import { useState } from 'react';
-import HeadTag from '../components/HeadTag';
-import Header from '../components/Header';
-import Nav from '../components/NavigationBar';
-import Calendar from '../components/Calendar';
-import Footer from '../components/Footer';
+import ComponentBundle from '../components/ComponentBundle';
 import getHolidays from '../apis/holidays';
 import styles from '../styles/Home.module.css';
 
 const Korea = ({ holidays }: any) => {
-  const [today, setToday] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>(new Date());
 
   return (
     <div className={styles.container}>
-      <HeadTag />
-      <Header />
-      <Nav />
-      <Calendar date={today} holidays={holidays} />
-      <Footer />
+      <ComponentBundle date={date} holidays={holidays} />
     </div>
   );
 };

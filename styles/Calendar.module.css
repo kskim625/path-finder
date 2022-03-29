@@ -19,7 +19,20 @@
   user-select: none;
 }
 
-.calendarContent {
+.darkCalendarRow:nth-child(2) {
+  color: #fff;
+  background-color: rgb(240, 58, 23, 0.8);
+}
+
+.darkCalendarRow {
+  display: flex;
+  border: 1px #fff solid;
+  background-color: rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
+.calendarContent,
+.darkCalendarContent {
   width: 45px;
   height: 45px;
   line-height: 45px;

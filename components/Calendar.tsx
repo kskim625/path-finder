@@ -17,6 +17,12 @@ interface holidayType {
   type: string[];
 }
 
+interface calendarType {
+  lightMode: boolean;
+  date: Date;
+  holidays: holidayType[] | [];
+}
+
 const CalendarHeader = () => {
   return (
     <div className={styles.dayType}>
@@ -28,7 +34,7 @@ const CalendarHeader = () => {
   );
 };
 
-const Calendar = ({ date, holidays }: { date: Date; holidays: holidayType[] | [] }) => {
+const Calendar = ({ lightMode, date, holidays }: calendarType) => {
   const [thisCalendar, setThisCalendar] = useState<JSX.Element>(<></>);
   const [thisHolidays, setThisHolidays] = useState<holidayType[]>([]);
   const DAYS_IN_A_WEEK: number = 7;
@@ -45,25 +51,27 @@ const Calendar = ({ date, holidays }: { date: Date; holidays: holidayType[] | []
     const today: Date = new Date();
     const isToday: boolean = today.getFullYear() === date.getFullYear() && today.getMonth() === date.getMonth() && today.getDate() === Number(calEl);
     const isHoliday: boolean = decideHoliday(calEl);
+    const contentStyle = lightMode ? styles.calendarContent : styles.darkCalendarContent;
 
     return isToday ? (
-      <div className={`${styles.calendarContent} ${styles.calendarToday}`} key={`calendarEl-${j}`}>
+      <div className={`${contentStyle} ${styles.calendarToday}`} key={`calendarEl-${j}`}>
         {calEl}
       </div>
     ) : isHoliday ? (
-      <div className={`${styles.calendarContent} ${styles.calendarHoliday}`} key={`calendarEl-${j}`}>
+      <div className={`${contentStyle} ${styles.calendarHoliday}`} key={`calendarEl-${j}`}>
         {calEl}
       </div>
     ) : (
-      <div className={styles.calendarContent} key={`calendarEl-${j}`}>
+      <div className={contentStyle} key={`calendarEl-${j}`}>
         {calEl}
       </div>
     );
   };
 
   const drawCalendarRow = (calendarRow: string[], i: number) => {
+    const rowStyle = lightMode ? styles.calendarRow : styles.darkCalendarRow;
     return (
-      <div className={styles.calendarRow} key={`calendar-${i}`}>
+      <div className={rowStyle} key={`calendar-${i}`}>
         {calendarRow.map((calEl, j) => {
           return drawCalendarEl(calEl, j);
         })}
@@ -127,11 +135,11 @@ const Calendar = ({ date, holidays }: { date: Date; holidays: holidayType[] | []
 
   useEffect(() => {
     setCalendar();
-  }, [thisHolidays]);
+  }, [thisHolidays, lightMode]);
 
   return (
     <div className={styles.calendarWrapper}>
-      {`${date.getFullYear()}년 ${date.getMonth() + 1}월`}
+      {holidays[0] ? `${date.getFullYear()}. ${date.getMonth() + 1}. ${holidays[0].country.name} holidays` : ''}
       <CalendarHeader />
       {thisCalendar}
     </div>

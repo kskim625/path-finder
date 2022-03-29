@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import styles from '../styles/NavigationBar.module.css';
 
-const NavigationBar = () => {
+const NavigationBar = ({ lightMode }: { lightMode: boolean }) => {
   return (
-    <div className={styles.navigationBar}>
-      <button className={styles.button}>
+    <div className={lightMode ? styles.navigationBar : styles.darkNavigationBar}>
+      <button className={lightMode ? styles.button : styles.darkButton}>
         <Link href="/korea">한국</Link>
       </button>
-      <button className={styles.button}>
+      <button className={lightMode ? styles.button : styles.darkButton}>
         <Link href="/us">The United States</Link>
       </button>
     </div>

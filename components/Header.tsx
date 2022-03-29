@@ -1,7 +1,31 @@
-import styles from "../styles/Header.module.css";
+import React, { SetStateAction } from 'react';
+import styles from '../styles/Header.module.css';
 
-const Header = () => {
-  return <header className={styles.header}>📅 World Calendars</header>;
+interface propType {
+  lightMode: boolean;
+  setLightMode: React.Dispatch<SetStateAction<boolean>>;
+}
+
+const Header = ({ lightMode, setLightMode }: propType) => {
+  const changeLightMode = () => {
+    setLightMode(!lightMode);
+  };
+
+  return lightMode ? (
+    <header className={styles.header}>
+      📅 World Calendars{' '}
+      <div className={styles.mode} onClick={changeLightMode}>
+        🌞
+      </div>
+    </header>
+  ) : (
+    <header className={styles.header}>
+      📅 World Calendars{' '}
+      <div className={styles.mode} onClick={changeLightMode}>
+        🌙
+      </div>
+    </header>
+  );
 };
 
 export default Header;
