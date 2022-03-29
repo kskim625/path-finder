@@ -2,7 +2,7 @@
 
 ## 🔗 Deploy Link
 
-- 배포 시 게시 예정
+- [Github Pages 배포](https://kskim625.github.io/world-calendar/)
 
 ## 🛠️ Skills
 
@@ -10,4 +10,4 @@
 
 ## 🖼️Images
 
-- 추후 업데이트 예정
+- ![image](https://user-images.githubusercontent.com/83746849/160551717-11bfcaef-5db6-4924-82a1-f45addf5a494.png)
