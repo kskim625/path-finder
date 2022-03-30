@@ -8,6 +8,7 @@ module.exports = {
     loader: 'imgix',
     path: isProduction ? productionUrl : '',
   },
-  assetPrefix: isProduction ? productionPath : '',
+  basePath: isProduction ? productionPath : '',
+  assetPrefix: isProduction ? productionPath + '/' : '',
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md'],
 };
