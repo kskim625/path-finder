@@ -5,10 +5,10 @@ const NavigationBar = ({ lightMode }: { lightMode: boolean }) => {
   return (
     <div className={lightMode ? styles.navigationBar : styles.darkNavigationBar}>
       <button className={lightMode ? styles.button : styles.darkButton}>
-        <Link href="/korea">한국</Link>
+        <Link href="/korea">KR</Link>
       </button>
       <button className={lightMode ? styles.button : styles.darkButton}>
-        <Link href="/us">The United States</Link>
+        <Link href="/us">US</Link>
       </button>
     </div>
   );

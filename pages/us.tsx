@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ComponentBundle from '../components/ComponentBundle';
 import getHolidays from '../apis/holidays';
-import styles from '../styles/Footer.module.css';
+import styles from '../styles/Home.module.css';
 
 const UnitedStates = ({ holidays }: any) => {
   const [date, setDate] = useState<Date>(new Date());

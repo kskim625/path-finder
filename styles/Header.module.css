@@ -12,5 +12,9 @@
 .mode {
   position: absolute;
   transform: translateX(425%);
+  -webkit-transform: translateX(425%);
+  -moz-transform: translateX(425%);
+  -ms-transform: translateX(425%);
+  -o-transform: translateX(425%);
   cursor: pointer;
 }
