@@ -1,6 +1,13 @@
 const isProduction = process.env.NODE_ENV === 'production';
-const prefix = 'https://kskim625.github.io/world-calendar';
+const productionUrl = 'https://kskim625.github.io';
+const productionPath = '/world-calendar';
 
 module.exports = {
-  assetPrefix: isProduction ? prefix : '',
+  reactStrictMode: true,
+  images: {
+    loader: 'imgix',
+    path: isProduction ? productionUrl : '',
+  },
+  assetPrefix: isProduction ? productionPath : '',
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md'],
 };
