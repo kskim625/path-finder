@@ -10,6 +10,9 @@ const NavigationBar = ({ lightMode }: { lightMode: boolean }) => {
       <button className={lightMode ? styles.button : styles.darkButton}>
         <Link href="/us">US</Link>
       </button>
+      <button className={lightMode ? styles.button : styles.darkButton}>
+        <Link href="/spain">ES</Link>
+      </button>
     </div>
   );
 };
