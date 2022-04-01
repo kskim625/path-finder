@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/Calendar.module.css';
 
 interface datetimeType {
@@ -37,6 +37,8 @@ const CalendarHeader = () => {
 const Calendar = ({ lightMode, date, holidays }: calendarType) => {
   const [thisCalendar, setThisCalendar] = useState<JSX.Element>(<></>);
   const [thisHolidays, setThisHolidays] = useState<holidayType[]>([]);
+  const [thisHolidayModal, setThisHolidayModal] = useState<JSX.Element>(<></>);
+  const [selectedEvent, setSelectedEvent] = useState<React.MouseEvent | null>(null);
   const DAYS_IN_A_WEEK: number = 7;
 
   const decideHoliday = (calEl: string) => {
@@ -44,6 +46,46 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
       thisHolidays.filter((holiday) => {
         return holiday.date.datetime.day === Number(calEl);
       }).length > 0
+    );
+  };
+
+  const removeModal = () => {
+    setThisHolidayModal(<></>);
+    setSelectedEvent(null);
+  };
+
+  const displayHolidayModal = (e: React.MouseEvent) => {
+    setSelectedEvent(e);
+    const date = Number((e.target as HTMLDivElement).textContent);
+    const holidays: (holidayType | undefined)[] = thisHolidays.filter((thisHoliday) => {
+      return thisHoliday.date.datetime.day === date;
+    });
+
+    const containerClass = lightMode ? styles.modalContainer : styles.darkModalContainer;
+    const removeButtonClass = lightMode ? styles.removeModal : styles.darkRemoveModal;
+
+    setThisHolidayModal(
+      <div className={styles.modalWrapper}>
+        <div className={containerClass}>
+          {holidays.map((thisHoliday, idx) => {
+            if (thisHoliday)
+              return (
+                <>
+                  <div className={styles.holidayDescription}>{`holiday #${idx}`}</div>
+                  <div className={styles.holidayDescription}>{`Country: ${thisHoliday.country.name}`}</div>
+                  <div className={styles.holidayDescription}>{`Date: ${thisHoliday.date.iso}`}</div>
+                  <div className={styles.holidayDescription}>{`Holiday name: ${thisHoliday.name}`}</div>
+                  <div className={styles.holidayDescription}>{`Holiday type: ${thisHoliday.type[0]}`}</div>
+                  <div className={styles.holidayDescription}>{`description: ${thisHoliday.description}`}</div>
+                  <br></br>
+                </>
+              );
+          })}
+          <div className={removeButtonClass} onClick={removeModal}>
+            Remove Explanation
+          </div>
+        </div>
+      </div>
     );
   };
 
@@ -58,7 +100,7 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
         {calEl}
       </div>
     ) : isHoliday ? (
-      <div className={`${contentStyle} ${styles.calendarHoliday}`} key={`calendarEl-${j}`}>
+      <div className={`${contentStyle} ${styles.calendarHoliday}`} onClick={displayHolidayModal} key={`calendarEl-${j}`}>
         {calEl}
       </div>
     ) : (
@@ -135,6 +177,9 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
 
   useEffect(() => {
     setCalendar();
+    if (selectedEvent) {
+      displayHolidayModal(selectedEvent);
+    }
   }, [thisHolidays, lightMode]);
 
   return (
@@ -142,6 +187,7 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
       {holidays[0] ? `${date.getFullYear()}. ${date.getMonth() + 1}. ${holidays[0].country.name} holidays` : ''}
       <CalendarHeader />
       {thisCalendar}
+      {thisHolidayModal}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from 'next/head';
 
 const HeadTag = () => {
   return (
@@ -9,10 +9,7 @@ const HeadTag = () => {
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-        rel="stylesheet"
-      />
+      <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
   );

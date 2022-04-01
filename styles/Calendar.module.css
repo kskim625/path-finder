@@ -85,3 +85,66 @@
   height: 7.5px;
   background-color: rgba(255, 0, 0, 0.8);
 }
+
+.modalWrapper {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 65px);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.modalContainer,
+.darkModalContainer {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, calc(-50% - 60px));
+  width: 320px;
+  height: auto;
+  min-height: 320px;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.modalContainer {
+  background-color: #fff;
+  border: 1px #000 solid;
+}
+
+.darkModalContainer {
+  background-color: rgb(50, 50, 50);
+  border: 1px #fff solid;
+}
+
+.holidayDescription {
+  margin: 10px 0;
+}
+
+.removeModal,
+.darkRemoveModal {
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.removeModal {
+  border: 1px #000 solid;
+}
+
+.darkRemoveModal {
+  border: 1px #fff solid;
+}
+
+.removeModal:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.darkRemoveModal:hover {
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgb(125, 125, 125);
+}
