@@ -99,13 +99,30 @@
 .darkModalContainer {
   position: absolute;
   left: 50%;
-  top: 40%;
-  transform: translate(-50%, calc(-50% - 60px));
+  top: 100px;
+  transform: translate(-50%, 0);
   width: 320px;
   height: auto;
+  max-height: 500px;
   min-height: 320px;
   border-radius: 5px;
   padding: 15px;
+  overflow-y: scroll;
+}
+
+.modalContainer::-webkit-scrollbar,
+.darkModalContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modalContainer::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #294881;
+}
+
+.darkModalContainer::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #96abd6;
 }
 
 .modalContainer {

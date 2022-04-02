@@ -71,7 +71,7 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
             if (thisHoliday)
               return (
                 <>
-                  <div className={styles.holidayDescription}>{`holiday #${idx}`}</div>
+                  <div className={styles.holidayDescription}>{`holiday #${idx + 1}`}</div>
                   <div className={styles.holidayDescription}>{`Country: ${thisHoliday.country.name}`}</div>
                   <div className={styles.holidayDescription}>{`Date: ${thisHoliday.date.iso}`}</div>
                   <div className={styles.holidayDescription}>{`Holiday name: ${thisHoliday.name}`}</div>
@@ -122,6 +122,7 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
   };
 
   const drawCalendar = (calendarArray: string[][]) => {
+    console.log(calendarArray);
     setThisCalendar(
       <>
         {calendarArray.map((calendarRow, i) => {
@@ -146,14 +147,15 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
 
   const makeCalendar = (year: number, month: number) => {
     const lastDate = new Date(year, month + 1, 0).getDate();
-    const calendarRows = [['일', '월', '화', '수', '목', '금', '토']];
+    const calendarRows = [['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']];
     const firstRow = setCalendarRow(year, month, 1, lastDate);
     calendarRows.push(firstRow);
     let currentDate =
       DAYS_IN_A_WEEK -
       firstRow.filter((str) => {
         return str === '';
-      }).length;
+      }).length +
+      1;
     while (currentDate < lastDate) {
       calendarRows.push(setCalendarRow(year, month, currentDate, lastDate));
       currentDate += DAYS_IN_A_WEEK;
