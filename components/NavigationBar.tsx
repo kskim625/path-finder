@@ -11,6 +11,9 @@ const NavigationBar = ({ lightMode }: { lightMode: boolean }) => {
         <Link href="/us">US</Link>
       </button>
       <button className={lightMode ? styles.button : styles.darkButton}>
+        <Link href="/canada">CA</Link>
+      </button>
+      <button className={lightMode ? styles.button : styles.darkButton}>
         <Link href="/spain">ES</Link>
       </button>
     </div>

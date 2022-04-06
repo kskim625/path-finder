@@ -122,7 +122,6 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
   };
 
   const drawCalendar = (calendarArray: string[][]) => {
-    console.log(calendarArray);
     setThisCalendar(
       <>
         {calendarArray.map((calendarRow, i) => {
