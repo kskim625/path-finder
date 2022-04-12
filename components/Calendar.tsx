@@ -95,7 +95,11 @@ const Calendar = ({ lightMode, date, holidays }: calendarType) => {
     const isHoliday: boolean = decideHoliday(calEl);
     const contentStyle = lightMode ? styles.calendarContent : styles.darkCalendarContent;
 
-    return isToday ? (
+    return isToday && isHoliday ? (
+      <div className={`${contentStyle} ${styles.calendarToday} ${styles.calendarHoliday}`} onClick={displayHolidayModal} key={`calendarEl-${j}`}>
+        {calEl}
+      </div>
+    ) : isToday ? (
       <div className={`${contentStyle} ${styles.calendarToday}`} key={`calendarEl-${j}`}>
         {calEl}
       </div>
