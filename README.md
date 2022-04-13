@@ -1,4 +1,4 @@
-# Path Finder
+# World Calendar
 
 ## 🔗 Deploy Link
 
@@ -10,4 +10,10 @@
 
 ## 🖼️Images
 
-- ![image](https://user-images.githubusercontent.com/83746849/160551717-11bfcaef-5db6-4924-82a1-f45addf5a494.png)
+### bright mode
+
+![image](https://user-images.githubusercontent.com/83746849/163198428-d9e3df19-4659-4b73-b50d-983b3a3a9d40.png)
+
+### dark mode
+
+![image](https://user-images.githubusercontent.com/83746849/163198546-5b926051-0de1-490e-937e-7dc1d4630325.png)
